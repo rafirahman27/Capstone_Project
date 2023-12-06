@@ -1,4 +1,4 @@
-# MarketMaster: Predicting your Car's Sales Price
+# MarketMaster: Predicting your Car's Market Value
 ---
 ## Problem Statement
 ---

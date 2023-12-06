@@ -1,0 +1,21 @@
+make,model,trim,engine_size,num_doors,mileage,reg_year,transmission_type,fuel_type,is_electric,price
+Smart,forfour,Turbo Prime Premium Plus,0.90,5,29167,2018,Auto,Petrol,0,10600
+Honda,Jazz,EX CVT,1.30,5,59058,2017,Auto,Petrol,0,10700
+Fiat,500,Lounge Dualogic,1.20,3,43122,2018,Auto,Petrol,0,10790
+Mini,Hatchback,Cooper D,1.50,3,61477,2017,Auto,Diesel,0,11050
+Renault,ZOE,100kW GT Line + R135 50kWh Rapid charge,0.00,5,5957,2022,Auto,Electric,1,14450
+Audi,TT,45 TFSI Quattro Sport S Tronic,2.00,2,29709,2019,Auto,Petrol,0,22280
+MG,MG5,115kW Exclusive EV 61kWh,0.00,5,26590,2022,Auto,Electric,1,16450
+Ford,Focus,EcoBoost 125 Zetec,1.00,5,23701,2016,Manual,Petrol,0,9000
+Volkswagen,Tiguan,Tdi 150 4Motion S DSG,2.00,5,52424,2020,Auto,Diesel,0,17750
+BMW,3 Series,320i M Sport,2.00,4,31672,2017,Manual,Petrol,0,15590
+Abarth,595,T-Jet 145,1.40,3,19475,2019,Manual,Petrol,0,11800
+Ford,Fiesta,EcoBoost ST-Line Navigation,1.00,5,41620,2018,Auto,Petrol,0,12100
+BMW,3 Series,320i M Sport Step,2.00,4,43793,2019,Auto,Petrol,0,21800
+Mercedes-Benz,GLC,GLC 43 4Matic Premium plus TCT,3.00,5,4957,2023,Auto,Petrol,0,53180
+Mercedes-Benz,CLA,CLA200 AMG Line Tip,2.00,4,11053,2019,Auto,Petrol,0,23600
+Kia,Sportage,Gdi ISG 2,1.60,5,28457,2019,Manual,Petrol,0,15000
+Audi,A3,TFSI S Line S Tronic,1.50,4,43364,2017,Auto,Petrol,0,16350
+Seat,Arona,TSI 115 FR Sport DSG,1.00,5,13002,2020,Auto,Petrol,0,15900
+Toyota,Aygo,VVT-I X,1.00,3,21794,2019,Manual,Petrol,0,8000
+BMW,1 Series,118i SE Business,1.50,5,38571,2019,Auto,Petrol,0,14900

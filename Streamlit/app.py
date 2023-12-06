@@ -4,7 +4,10 @@ import streamlit as st
 import pandas as pd
 
 # title
-st.title('Vehicle Market Value Estimator')
+#st.title('MarketMaster')
+#st.subheader("Predicting your Car's Market Value")
+st.markdown("<h1 style='text-align: center;'>MarketMaster</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Predicting your Car's Market Value</h3>", unsafe_allow_html=True)
 
 # production model
 with open('../Pickled_Model/cvec.pkl', 'rb') as pickle_in:
