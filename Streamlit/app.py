@@ -1,13 +1,18 @@
 # imports
 import pickle
 import streamlit as st
+import pandas as pd
 
 # title
 st.title('Vehicle Market Value Estimator')
 
 # production model
-
-
+with open('../Pickled_Model/cvec.pkl', 'rb') as pickle_in:
+    cvec = pickle.load(pickle_in)
+with open('../Pickled_Model/OneHotEncoder.pkl', 'rb') as pickle_in:
+    oh = pickle.load(pickle_in)
+with open('../Pickled_Model/Production_Model.pkl', 'rb') as pickle_in:
+    extra = pickle.load(pickle_in)
 # user vehicle information selection
 # Make
 make = st.selectbox(
@@ -648,24 +653,49 @@ if make is not None and model is not None and trim is not None:
          '1.7', '1.8', '2.0', '2.1', '2.2', '2.3', '2.5', '2.9', '3.0', '3.3', '3.5',
          '5.0', '6.2')
     )
-
-# Mileage
 if engine_size is not None:
+    fuel_type = st.selectbox(
+        'Fuel Type',
+        ('Petrol', 'Diesel', 'Hybrid', 'Plug-in Hybrid', 'Electric', 'LPG')
+    )
+    if fuel_type == 'Electric':
+        is_electric = 1
+    else:
+        is_electric = 0
+
+    # Mileage
     mileage = st.number_input('Mileage:', min_value=0, step=1)
-#number of doors
-    if mileage > 15:
-         num_doors = st.selectbox(
-            'Number of Doors',
-            ('2', '3', '4', '5')
-    )
-else:
-    st.write('Please Enter mileage to continue')
-#gearbox
-if num_doors is not None:
-        gearbox = st.selectbox(
-            'Transmission',
-            ('Manual', 'Automatic', 'Semiauto')
-    )
-#reg_yea
-if gearbox is not None:
-    reg_year = st.number_input('Year of Registration:', min_value=2000, step=1)
+    print(f"DEBUG: mileage = {mileage}")
+
+    # Number of doors
+    if mileage is not None and mileage > 15:
+        num_doors = st.selectbox('Number of Doors', ('2', '3', '4', '5'))
+        print(f"DEBUG: num_doors = {num_doors}")
+    else:
+        st.write("Please enter the car's mileage")
+
+    # Gearbox
+    if 'num_doors' in locals() and num_doors is not None:
+        gearbox = st.selectbox('Transmission', ('Manual', 'Automatic', 'Semiauto'))
+        print(f"DEBUG: gearbox = {gearbox}")
+    else:
+        st.write('Please select the number of doors to continue.')
+
+    # Registration year
+    if 'gearbox' in locals() and gearbox is not None:
+        reg_year = st.number_input('Year of Registration:', min_value=2000, step=1)
+        print(f"DEBUG: reg_year = {reg_year}")
+    else:
+        st.write('Please select the gearbox type to continue.')
+# Prediction
+if st.button("Run Model"):
+    if make is not None and model is not None and gearbox is not None and fuel_type is not None and num_doors is not None:
+        trimcvec = pd.DataFrame((cvec.transform(['trim']).todense()), columns=cvec.get_feature_names_out())
+        dataoh = pd.DataFrame(oh.transform([[make,model,gearbox,fuel_type]]), columns=oh.get_feature_names_out())
+
+        vehicle = pd.concat([trimcvec,dataoh], axis=1)
+        vehicle[['engine_size','num_doors','mileage','reg_year','is_electric']] = [engine_size,num_doors,mileage,reg_year,is_electric]
+        pred = extra.predict(vehicle)
+        st.title(f'Your car is estimated to be worth £{pred[0]}')
+    else:
+        st.title("Please fill in your car's information")
